@@ -26,7 +26,7 @@ class FinTables
 
         if($tableRes = self::$sql->query($tableQuery)){
             while($row = $tableRes->fetch_assoc()){
-                $result = $row;
+                $result[] = $row;
             }
         }
         return $result;
