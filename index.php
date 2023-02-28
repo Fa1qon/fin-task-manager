@@ -1,6 +1,7 @@
 <?php
 $page = $_GET['p'];
 include 'lib/db.php';
+include 'lib/helper.php';
 
 if (!$_COOKIE['AUTH']) {
     include 'inc/auth.php';
