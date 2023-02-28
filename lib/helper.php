@@ -49,13 +49,13 @@ class FinTables
     {
         $tableArray = self::getTableArray($params);
         $result = '<table border=1>';
-        $result .= '<th>
-            <td>ID</td>
-            <td>Дата</td>
-            <td>Сумма</td>
-            <td>Категория</td>
-            <td>Описание</td>
-        </th>';
+        $result .= '<tr>
+            <th>ID</th>
+            <th>Дата</th>
+            <th>Сумма</th>
+            <th>Категория</th>
+            <th>Описание</th>
+        </tr>';
         foreach ($tableArray as $row) {
             $result .= '<tr>';
             $result .= '<td>'.$row['ID'].'</td>';
