@@ -20,52 +20,53 @@ class FinTables
         }
     }
 
-    public function getFullTableArray()
-    {
-        $tableQuery = 'SELECT * FROM '.self::$table;
-
-        if($tableRes = self::$sql->query($tableQuery)){
-            while($row = $tableRes->fetch_assoc()){
-                $result[] = $row;
-            }
-        }
-        return $result;
-    }
-
     public function getTableArray(array $arParams)
     {
-        $strParams = '';
-        foreach ($arParams as $k => $v) {
-            if ($k[0] == '>' || $k[0] == '<' || $k[0] == '=') {
-                $sep = $k[0];
-            } else {
-                $sep = '=';
+        if (empty($arParams)) {
+            $strParams = '';
+        } else {
+            $strParams = ' WHERE ';
+            foreach ($arParams as $k => $v) {
+                if ($k[0] == '>' || $k[0] == '<' || $k[0] == '=') {
+                    $sep = $k[0];
+                } else {
+                    $sep = '=';
+                }
+                $strParams .= $k . $sep . '"'.$v.'" AND ';
+                $strParams = substr($strParams,0,-5);
             }
-            $strParams .= $k . $sep . '"'.$v.'" AND ';
-            $strParams = substr($strParams,0,-5);
         }
-        $tableQuery = 'SELECT * FROM '.self::$table.' WHERE '.$strParams;
+        $tableQuery = 'SELECT * FROM '.self::$table.$strParams;
         if($tableRes = self::$sql->query($tableQuery)){
             while($row = $tableRes->fetch_assoc()){
                 $result[] = $row;
             }
         }
         return $result;
-    }
-
-    public function showFullTable()
-    {
-        $tableArray = self::getFullTableArray();
-        $result = '<pre>';
-        $result .= print_r($tableArray, true);
-        $result .= '</pre>';
-        return $result;
-
     }
 
     public function showTable($params)
     {
         $tableArray = self::getTableArray($params);
+        $result = '<table border=1>';
+        $result .= '<th>
+            <td>ID</td>
+            <td>Дата</td>
+            <td>Сумма</td>
+            <td>Категория</td>
+            <td>Описание</td>
+        </th>';
+        foreach ($tableArray as $row) {
+            $result .= '<tr>';
+            $result .= '<td>'.$row['ID'].'</td>';
+            $result .= '<td>'.$row['DATE'].'</td>';
+            $result .= '<td>'.$row['SUMM'].'</td>';
+            $result .= '<td>'.$row['CATEGORY'].'</td>';
+            $result .= '<td>'.$row['DESCRIPTION'].'</td>';
+            $result .= '</tr>';
+        }
+        $result .= '</table>';
+        return $result;
 
     }
 }
