@@ -1,5 +1,1 @@
-let ajaxUrl = '/apps/manager/lib/ajax/income.php';
-
-showEntity = function(method, id) {
-
-}
+let ajaxUrl = '/apps/manager/fin-task-manager/lib/ajax/income.php';

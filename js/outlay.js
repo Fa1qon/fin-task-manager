@@ -1,0 +1,1 @@
+let ajaxUrl = '/apps/manager/fin-task-manager/lib/ajax/outlay.php';

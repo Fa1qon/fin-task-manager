@@ -29,3 +29,13 @@ body {
     /* Support for IE. */
     font-feature-settings: 'liga';
 }
+
+.edit-link {
+    cursor: pointer;
+    color: blue;
+}
+
+.delete-link {
+    cursor: pointer;
+    color: red;
+}

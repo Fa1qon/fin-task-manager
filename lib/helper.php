@@ -65,8 +65,8 @@ class FinTables
             $result .= '<td>'.$row['SUMM'].'</td>';
             $result .= '<td>'.$row['CATEGORY'].'</td>';
             $result .= '<td>'.$row['DESCRIPTION'].'</td>';
-            $result .= '<td><span class="material-icons" onclick="update('.$row['ID'].')">edit</span></td>';
-            $result .= '<td><span class="material-icons" onclick="delete('.$row['ID'].')">delete</span></td>';
+            $result .= '<td><span class="material-icons edit-link" onclick="updateElem('.$row['ID'].')">edit</span></td>';
+            $result .= '<td><span class="material-icons delete-link" onclick="deleteElem('.$row['ID'].')">delete</span></td>';
             $result .= '</tr>';
         }
         $result .= '</table>';
