@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['login'] && $_POST['password'
         $authQuery = 'UPDATE users SET SESSION_TOKEN="'.$sessionHash.'" WHERE ID='.$arr['ID'];
         $auth = $sql->query($authQuery);
         setcookie("AUTH", $sessionHash, time()+28800);
-        header('Location: /apps/manager/');
+        header('Location: /apps/manager/fin-task-manager/');
     } else {
-        header('Location: /apps/manager/?p=wrong');
+        header('Location: /apps/manager/fin-task-manager/?p=wrong');
     }
 } else { ?>
     <!doctype html>
