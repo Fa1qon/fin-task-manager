@@ -4,6 +4,7 @@ define('DB_USER', 'u0748065_taskmgr');
 define('DB_PASSWORD', 'tY4nY1vR5icX4d');
 
 $sql = mysqli_connect('localhost', DB_USER, DB_PASSWORD, DB_NAME);
+self::$sql->set_charset("utf8");
 if ($sql === false) {
     die("Ошибка: " . mysqli_connect_error());
 }
