@@ -7,6 +7,7 @@ class Tables
     public function __construct($table)
     {
         self::$table = $table;
+        require_once 'lib/db.php';
     }
 
     public function showFullTable()
