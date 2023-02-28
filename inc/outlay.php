@@ -1,12 +1,8 @@
 <?php
 $otlay = new \Helper\Tables('outlay');
-$outlayArr = \Helper\Tables::showFullTable();
+$outlayArr = $otlay->showFullTable();
 ?>
 <pre>
     <?=$outlayArr ?>
 </pre>
-
-
-<?php
-function showTable
-?>
+w
