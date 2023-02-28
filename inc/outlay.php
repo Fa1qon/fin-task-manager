@@ -1,6 +1,6 @@
 <?php
 $otlay = new \Helper\FinTables('outlay');
-$outlayArr = $otlay->showFullTable();
+$outlayArr = $otlay->showTable([]);
 ?>
 
 <h2>Table</h2>
