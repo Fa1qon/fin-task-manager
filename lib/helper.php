@@ -55,6 +55,8 @@ class FinTables
             <th>Сумма</th>
             <th>Категория</th>
             <th>Описание</th>
+            <th>Редактировать</th>
+            <th>Удалить</th>
         </tr>';
         foreach ($tableArray as $row) {
             $result .= '<tr>';
@@ -63,6 +65,8 @@ class FinTables
             $result .= '<td>'.$row['SUMM'].'</td>';
             $result .= '<td>'.$row['CATEGORY'].'</td>';
             $result .= '<td>'.$row['DESCRIPTION'].'</td>';
+            $result .= '<td><span class="material-icons" onclick="update('.$row['ID'].')">edit</span></td>';
+            $result .= '<td><span class="material-icons" onclick="delete('.$row['ID'].')">delete</span></td>';
             $result .= '</tr>';
         }
         $result .= '</table>';
