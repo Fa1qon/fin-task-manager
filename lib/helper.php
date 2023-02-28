@@ -7,11 +7,11 @@ class Tables
     public function __construct($table)
     {
         self::$table = $table;
-        require_once 'lib/db.php';
     }
 
     public function showFullTable()
     {
+        require_once 'lib/db.php';
         $tableQuery = 'SELECT * FROM '.self::$table;
 
         if($tableRes = $sql->query($tableQuery)){
