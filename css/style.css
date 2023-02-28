@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 /* font-family: 'Russo One', sans-serif; */
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Russo+One&display=swap');
+font-family: 'IBM Plex Sans', sans-serif;
+
 body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+h1, h2, h3 {
     font-family: 'Russo One', sans-serif;
 }
 

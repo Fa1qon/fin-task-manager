@@ -9,7 +9,7 @@
  */
 
 $income = new \Helper\FinTables('income');
-$incomeArr = $otlay->showTable([]);
+$incomeArr = $income->showTable([]);
 ?>
 <h2>Table</h2>
 <?php
