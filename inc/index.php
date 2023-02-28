@@ -1,11 +1,3 @@
 <?php
-echo 'Основная страница с меню';
+echo 'Главная страница';
 ?>
-<p><a href="?p=outlay">Расходы</a></p>
-<p><a href="?p=income">Доходы</a></p>
-
-<pre>
-    <?php
-        print_r($_SERVER);
-    ?>
-</pre>

@@ -21,7 +21,6 @@ class Tables
 
     public function showFullTable()
     {
-        require_once 'lib/db.php';
         $tableQuery = 'SELECT * FROM '.self::$table;
 
         if($tableRes = self::$sql->query($tableQuery)){

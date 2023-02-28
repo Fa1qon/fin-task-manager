@@ -4,7 +4,6 @@ $outlayArr = $otlay->showFullTable();
 ?>
 <pre>
     <?
-        print_r($outlayArr);
+        var_dump($outlayArr);
     ?>
 </pre>
-w

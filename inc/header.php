@@ -26,3 +26,12 @@ if($checkAuth = $sql->query($checkAuthQuery)){
         print_r($arr);
     ?>
 </pre>
+<p><a href="?p=outlay">Расходы</a></p>
+<p><a href="?p=income">Доходы</a></p>
+<p><a href="?p=tasks">Задачи</a></p>
+
+<pre>
+    <?php
+    print_r($_SERVER);
+    ?>
+</pre>
