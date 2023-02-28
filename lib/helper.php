@@ -55,7 +55,7 @@ class FinTables
 
     public function showFullTable()
     {
-        $tableArray = self::getFullTableArray($params);
+        $tableArray = self::getFullTableArray();
         $result = '<pre>';
         $result .= print_r($tableArray, true);
         $result .= '</pre>';
@@ -109,7 +109,7 @@ class Options
 
     }
 
-    public function deleteOption(id)
+    public function deleteOption($id)
     {
 
     }
