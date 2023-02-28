@@ -9,6 +9,7 @@ class Tables
 {
 
     private static $table;
+    private static $sql;
     public function __construct($table)
     {
         self::$table = $table;
