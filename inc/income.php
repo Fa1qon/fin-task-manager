@@ -7,10 +7,13 @@
  * Удалить
  * Настройки типов и категорий
  */
+
+$income = new \Helper\FinTables('income');
+$incomeArr = $otlay->showFullTable();
 ?>
 <h2>Table</h2>
 <?php
-
+    echo $incomeArr;
 ?>
 
 <h2>Add</h2>
