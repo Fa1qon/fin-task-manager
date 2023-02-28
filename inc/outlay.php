@@ -3,6 +3,8 @@ $otlay = new \Helper\Tables('outlay');
 $outlayArr = $otlay->showFullTable();
 ?>
 <pre>
-    <?=$outlayArr ?>
+    <?
+        print_r($outlayArr);
+    ?>
 </pre>
 w
