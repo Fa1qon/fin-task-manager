@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['login'] && $_POST['password'
     if ($arr['ID'] > 0) {
         $authQuery = 'UPDATE users SET SESSION_TOKEN="'.$sessionHash.'" WHERE ID='.$arr['ID'];
         $auth = $sql->query($authQuery);
-        setcookie("AUTH", $sessionHash, time()+28800);
+        setcookie("AUTH", $sessionHash, time()+2592000);
         header('Location: '.$_SERVER['REQUEST_URI']);
     } else {
         header('Location: '.$_SERVER['REQUEST_URI'].'?p=wrong');

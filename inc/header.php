@@ -31,3 +31,33 @@ if($checkAuth = $sql->query($checkAuthQuery)){
 <p><a href="?p=outlay">Расходы</a></p>
 <p><a href="?p=income">Доходы</a></p>
 <p><a href="?p=tasks">Задачи</a></p>
+
+<header class="menu">
+    <div class="menu-wrap">
+        <img src="logo.png" class="logo-img" alt="Logo">
+        <input type="checkbox" id="checkbox">
+        <nav>
+            <ul>
+                <li><a href="?p=outlay">Расходы</a></li>
+                <li><a href="?p=income">Доходы</a></li>
+                <li><a href="?p=tasks">Задачи</a></li>
+                <li><a href="#">Статистика</a></li>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropbtn">Dropdown
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <label for="checkbox">
+            <i class="fa fa-bars menu-icon"></i>
+        </label>
+    </div>
+</header>
