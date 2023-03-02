@@ -22,19 +22,10 @@ if($checkAuth = $sql->query($checkAuthQuery)){
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
-<pre>
-    <?
-        print_r($_COOKIE['AUTH']);
-        print_r($arr);
-    ?>
-</pre>
-<p><a href="?p=outlay">Расходы</a></p>
-<p><a href="?p=income">Доходы</a></p>
-<p><a href="?p=tasks">Задачи</a></p>
-
 <header class="menu">
     <div class="menu-wrap">
-        <img src="logo.png" class="logo-img" alt="Logo">
+        <!--<img src="logo.png" class="logo-img" alt="Logo">-->
+        <span style="color:white;">Вы вошли как <?=$arr['LOGIN']?> (<?=$arr['FULL_NAME']?>)</span>
         <input type="checkbox" id="checkbox">
         <nav>
             <ul>
@@ -61,3 +52,8 @@ if($checkAuth = $sql->query($checkAuthQuery)){
         </label>
     </div>
 </header>
+<pre>
+    <?
+    print_r($arr);
+    ?>
+</pre>
