@@ -134,7 +134,29 @@ class FinForms
 {
     public function showAddForm($type)
     {
+        switch ($type) {
+            case 'income':
+                $opt = 'INCOME_CATEGORY';
+                break;
+            case 'outlay':
+                $opt = 'OUTLAY_CATEGORY';
+                break;
+        }
+        $result = '<div class="fin-form fin-add-form">';
+        $result .= '<table>';
+        $result .= '<tr>
+                        <th>Дата</th>
+                        <th>Сумма</th>
+                        <th>Категория</th>
+                        <th>Описание</th>
+                        <th></th>
+                        <th></th>
+                    </tr>';
 
+        $result .= '</table>';
+        $result .= '</div>';
+
+        return $result;
     }
 
     public function showUpdateForm($type, $id)
