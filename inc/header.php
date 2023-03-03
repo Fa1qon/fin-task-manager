@@ -600,6 +600,7 @@ if($checkAuth = $sql->query($checkAuthQuery)){
     </div>
 </div>
 <!-- Main Menu area End-->
+<!-- Main Menu area End-->
 <header class="menu">
     <div class="menu-wrap">
         <!--<img src="logo.png" class="logo-img" alt="Logo">-->
