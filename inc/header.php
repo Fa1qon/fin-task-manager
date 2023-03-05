@@ -6,6 +6,37 @@ if($checkAuth = $sql->query($checkAuthQuery)){
         $arr = $row;
     }
 }
+$arMenu = [
+    [
+        'p' => 'income',
+        'n' => 'Доходы',
+        'l' => [
+            'current' => 'Текущие',
+            'table' => 'Таблица',
+            'calendar' => 'По месяцам',
+            'category' => 'По категориям',
+            'stats' => 'Статистика',
+            'options' => 'Опции'
+        ],
+        'p' => 'outlay',
+        'n' => 'Расходы',
+        'l' => [
+            'current' => 'Текущие',
+            'table' => 'Таблица',
+            'calendar' => 'По месяцам',
+            'category' => 'По категориям',
+            'stats' => 'Статистика',
+            'options' => 'Опции'
+        ],
+        'p' => 'house',
+        'n' => 'Рассчеты по земле',
+        'l' => [
+            'current' => 'Остатки',
+            'table' => 'Таблица',
+            'docs' => 'Документы',
+        ],
+    ]
+];
 ?>
 <!doctype html>
 <html class="no-js" lang="">
