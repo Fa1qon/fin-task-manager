@@ -6,7 +6,19 @@ if($checkAuth = $sql->query($checkAuthQuery)){
         $arr = $row;
     }
 }
+if($_GET['p'] == ''){
+    $_GET['p'] = 'home';
+}
 $arMenu = array(
+    [
+        'p' => 'home',
+        'n' => 'Главная',
+        'l' => [
+            'stats' => 'Статистика',
+            'table' => 'Таблица',
+            'debug' => 'Отладка',
+        ]
+    ],
         [
                 'p' => 'income',
                 'n' => 'Доходы',
@@ -443,16 +455,6 @@ $arMenu = array(
 
                                 }
                             ?>
-
-                            <!--<li><a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
-                                <ul class="collapse dropdown-header-top">
-                                    <li><a href="index.html">Dashboard One</a></li>
-                                    <li><a href="index-2.html">Dashboard Two</a></li>
-                                    <li><a href="index-3.html">Dashboard Three</a></li>
-                                    <li><a href="index-4.html">Dashboard Four</a></li>
-                                    <li><a href="analytics.html">Analytics</a></li>
-                                    <li><a href="widgets.html">Widgets</a></li>
-                                </ul> -->
                             </li>
                         </ul>
                     </nav>
