@@ -510,9 +510,9 @@ $arMenu = array(
 </div>
 <!-- Main Menu area End-->
 <!-- Main Menu area End-->
+<!--
 <header class="menu">
     <div class="menu-wrap">
-        <!--<img src="logo.png" class="logo-img" alt="Logo">-->
         <span style="color:white;">Вы вошли как <?=$arr['LOGIN']?> (<?=$arr['FULL_NAME']?>)</span>
         <input type="checkbox" id="checkbox">
         <nav>
@@ -539,4 +539,4 @@ $arMenu = array(
             <i class="fa fa-bars menu-icon"></i>
         </label>
     </div>
-</header>
+</header>-->
