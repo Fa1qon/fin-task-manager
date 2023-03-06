@@ -480,7 +480,8 @@ $arMenu = array(
                 <div class="tab-content custom-menu-content">
                     <?
                     foreach ($arMenu as $mi) {
-                        echo '<div id="'.$mi['p'].'" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                        if ($mi['p'] == 'home') {$cls = 'active';} else {$cls = '';}
+                        echo '<div id="'.$mi['p'].'" class="tab-pane '.$cls.' in notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">';
                         foreach ($mi['l'] as $milK => $milV) {
                             echo '<li><a href="?p='.$mi['p'].'&l='.$milK.'">'.$milV.'</a></li>';
