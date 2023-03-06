@@ -5,6 +5,15 @@ define('DB_NAME', 'u0748065_taskmgr');
 define('DB_USER', 'u0748065_taskmgr');
 define('DB_PASSWORD', 'tY4nY1vR5icX4d');
 
+/* TODO
+ * Методы добавления, изменения удаления
+ * Верстка таблиц
+ * Верстка табов
+ * Меню
+ *
+ *
+*/
+
 class FinTables
 {
 
@@ -132,6 +141,10 @@ class Options
 
 class FinForms
 {
+    /**
+     * @param $type
+     * @return string
+     */
     public function showAddForm($type)
     {
         switch ($type) {
