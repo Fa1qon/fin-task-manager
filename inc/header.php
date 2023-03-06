@@ -473,8 +473,6 @@ $arMenu = array(
                             echo '<li class="active"><a data-toggle="tab" href="#'.$mi['p'].'"><i class="notika-icon notika-house"></i> '.$mi['n'].'</a></li>';
                         }
                     ?>
-                    <!--<li class="active"><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
-                    </li> -->
                 </ul>
                 <div class="tab-content custom-menu-content">
                     <?
@@ -487,22 +485,6 @@ $arMenu = array(
                         echo '</ul></div>';
                     }
                     ?>
-                    <!--<div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
-                        <ul class="notika-main-menu-dropdown">
-                            <li><a href="index.html">Dashboard One</a>
-                            </li>
-                            <li><a href="index-2.html">Dashboard Two</a>
-                            </li>
-                            <li><a href="index-3.html">Dashboard Three</a>
-                            </li>
-                            <li><a href="index-4.html">Dashboard Four</a>
-                            </li>
-                            <li><a href="analytics.html">Analytics</a>
-                            </li>
-                            <li><a href="widgets.html">Widgets</a>
-                            </li>
-                        </ul>
-                    </div>-->
                 </div>
             </div>
         </div>
