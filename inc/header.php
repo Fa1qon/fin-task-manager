@@ -470,7 +470,8 @@ $arMenu = array(
                 <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                     <?
                         foreach ($arMenu as $mi) {
-                            echo '<li class="active"><a data-toggle="tab" href="#'.$mi['p'].'"><i class="notika-icon notika-house"></i> '.$mi['n'].'</a></li>';
+                            if ($mi['p'] == 'home') {$cls = 'class="active"';} else {$cls = '';}
+                            echo '<li '.$cls.'><a data-toggle="tab" href="#'.$mi['p'].'"><i class="notika-icon notika-house"></i> '.$mi['n'].'</a></li>';
                         }
                     ?>
                 </ul>
