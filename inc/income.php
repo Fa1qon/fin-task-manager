@@ -23,7 +23,7 @@ $incomeArr = $income->showTable([]);
 <h2>Options</h2>
 
 <?php
-    $form = \Helper\FinTables::showAddForm('income');
+    $form = \Helper\FinForms::showAddForm('income');
     \Helper\UI::showModal('incomeAdd', $form, ['incomeAddButton' => 'Добавить'])
 ?>
 
