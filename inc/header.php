@@ -6,7 +6,7 @@ if($checkAuth = $sql->query($checkAuthQuery)){
         $arr = $row;
     }
 }
-if($_GET['p'] == ''){
+if(!$_GET['p']){
     $_GET['p'] = 'home';
 }
 $arMenu = array(
@@ -472,7 +472,7 @@ $arMenu = array(
                 <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                     <?
                         foreach ($arMenu as $mi) {
-                            if ($mi['p'] == 'home') {$cls = 'class="active"';} else {$cls = '';}
+                            if ($mi['p'] == $_GET['p']) {$cls = 'class="active"';} else {$cls = '';}
                             echo '<li '.$cls.'><a data-toggle="tab" href="#'.$mi['p'].'"><i class="notika-icon notika-house"></i> '.$mi['n'].'</a></li>';
                         }
                     ?>
@@ -480,7 +480,7 @@ $arMenu = array(
                 <div class="tab-content custom-menu-content">
                     <?
                     foreach ($arMenu as $mi) {
-                        if ($mi['p'] == 'home') {$cls = 'active';} else {$cls = '';}
+                        if ($mi['p'] == $_GET['p']) {$cls = 'active';} else {$cls = '';}
                         echo '<div id="'.$mi['p'].'" class="tab-pane '.$cls.' in notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">';
                         foreach ($mi['l'] as $milK => $milV) {

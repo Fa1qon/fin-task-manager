@@ -155,15 +155,24 @@ class FinForms
                 $opt = 'OUTLAY_CATEGORY';
                 break;
         }
+        $options  = Options::getOptions($opt);
         $result = '<div class="fin-form fin-add-form">';
         $result .= '<table>';
         $result .= '<tr>
-                        <th>Дата</th>
-                        <th>Сумма</th>
-                        <th>Категория</th>
-                        <th>Описание</th>
-                        <th></th>
-                        <th></th>
+                        <td>Дата</td>
+                        <td><input type="date" id="finAddDate"></td>
+                    </tr>';
+        $result .= '<tr>
+                        <td>Сумма</td>
+                        <td><input type="text" id="finAddSumm"></td>
+                    </tr>';
+        $result .= '<tr>
+                        <td>Категория</td>
+                        <td><select id="finAddCategory">';
+        foreach ($options as $o) {
+            echo '<option value="'.$o['VALUE'].'">'.$o['DESCRIPTION'].'</option>';
+        }
+        $result .= '</select></td>
                     </tr>';
 
         $result .= '</table>';
