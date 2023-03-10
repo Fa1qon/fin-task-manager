@@ -19,6 +19,10 @@ class FinTables
 
     private static $table;
     private static $sql;
+
+    /**
+     * @param $table
+     */
     public function __construct($table)
     {
         self::$table = $table;
@@ -29,6 +33,10 @@ class FinTables
         }
     }
 
+    /**
+     * @param array $arParams
+     * @return array
+     */
     public function getTableArray(array $arParams)
     {
         if (empty($arParams)) {
@@ -54,6 +62,10 @@ class FinTables
         return $result;
     }
 
+    /**
+     * @param $params
+     * @return string
+     */
     public function showTable($params)
     {
         $tableArray = self::getTableArray($params);
@@ -87,6 +99,10 @@ class FinTables
 class Options
 {
     private static $sql;
+
+    /**
+     * @param $table
+     */
     public function __construct($table)
     {
         self::$sql = mysqli_connect('localhost', DB_USER, DB_PASSWORD, DB_NAME);
@@ -96,6 +112,10 @@ class Options
         }
     }
 
+    /**
+     * @param $name
+     * @return array
+     */
     public function getOptions($name)
     {
         $optQuery = 'SELECT * FROM options WHERE NAME="'.$name.'"';
@@ -174,6 +194,10 @@ class FinForms
         }
         $result .= '</select></td>
                     </tr>';
+        $result .= '<tr>
+                        <td>Описание</td>
+                        <td><input type="text" id="finAddDescription"></td>
+                    </tr>';
 
         $result .= '</table>';
         $result .= '</div>';
@@ -205,4 +229,37 @@ class FinForms
     {
 
     }
+}
+
+class UI
+{
+    /**
+     * @param $id
+     * @param $content
+     * @param $buttons
+     * @return string
+     */
+    public function showModal($id, $content, $buttons) {
+        foreach ($buttons as $btnk => $btnv) {
+            $btnContent .= '<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" id="'.$btnk.'">'.$btnv.'</button>
+';
+        }
+        $result =  '<div class="modal fade" id="'.$id.'" role="dialog" style="display: none;">
+                        <div class="modal-dialog modals-default">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    '.$content.'
+                                </div>
+                                <div class="modal-footer">
+                                    '.$btnContent.'
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+        return $result;
+    }
+
 }
