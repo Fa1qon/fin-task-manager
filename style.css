@@ -4631,3 +4631,10 @@ body.box-layout {
 /*----------------------------------------*/
 .mCS-light-1.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: #00c292; }
 .mCS-light-1.mCSB_scrollTools .mCSB_draggerRail{ background-color: #ccc; }
+
+.btn {
+    font-size: 25px;
+}
+.icon {
+    display: inline-block!important;
+}

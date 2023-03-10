@@ -103,6 +103,8 @@ $arMenu = array(
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <!-- Bootstrap CSS
 		============================================ -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -146,6 +148,8 @@ $arMenu = array(
     <link rel="stylesheet" href="css/responsive.css">
     <!-- modernizr JS
 		============================================ -->
+    <link rel="stylesheet" href="css/icons.css">
+
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 

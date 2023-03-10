@@ -210,3 +210,6 @@
 .notika-wifi:before {
   content: "\e934";
 }
+.notika-add:before {
+  content: "\e93e";
+}

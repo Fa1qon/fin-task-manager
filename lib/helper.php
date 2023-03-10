@@ -14,24 +14,70 @@ define('DB_PASSWORD', 'tY4nY1vR5icX4d');
  *
 */
 
-class FinTables
-{
-
-    private static $table;
+Class DB {
     private static $sql;
 
     /**
-     * @param $table
+     *
      */
-    public function __construct($table)
+    public function __construct()
     {
-        self::$table = $table;
         self::$sql = mysqli_connect('localhost', DB_USER, DB_PASSWORD, DB_NAME);
         self::$sql->set_charset("utf8");
         if (self::$sql === false) {
             die("Ошибка: " . mysqli_connect_error());
         }
     }
+
+    /**
+     * @param $str
+     * @return array
+     */
+    public function query($str)
+    {
+        if($res = self::$sql->query($str)){
+            while($row = $res->fetch_assoc()){
+                $result[] = $row;
+            }
+        }
+        return $result;
+    }
+
+    public function insert()
+    {
+
+    }
+
+    public function update()
+    {
+
+    }
+
+    /**
+     * @param $table
+     * @param $filter
+     * @return array
+     */
+    public function select($table, $filter = '')
+    {
+        if ($filter != '') {
+            $where = ' WHERE '.$filter;
+        }
+        $query = 'SELECT * FROM '.$table.$where;
+        $result = $this->query($query);
+        return $result;
+    }
+
+}
+
+class FinTables
+{
+    private static $table;
+    public function __construct($table)
+    {
+        self::$table = $table;
+    }
+
 
     /**
      * @param array $arParams
@@ -54,11 +100,9 @@ class FinTables
             }
         }
         $tableQuery = 'SELECT * FROM '.self::$table.$strParams;
-        if($tableRes = self::$sql->query($tableQuery)){
-            while($row = $tableRes->fetch_assoc()){
-                $result[] = $row;
-            }
-        }
+        $sql = new DB();
+        $result = $sql->query($tableQuery);
+
         return $result;
     }
 
@@ -69,15 +113,15 @@ class FinTables
     public function showTable($params)
     {
         $tableArray = self::getTableArray($params);
-        $result = '<table border=1>';
+        $result = '<table class="table table-bordered table-hover ">';
         $result .= '<tr>
             <th>ID</th>
             <th>Дата</th>
             <th>Сумма</th>
             <th>Категория</th>
             <th>Описание</th>
-            <th>Редактировать</th>
-            <th>Удалить</th>
+            <th> </th>
+            <th> </th>
         </tr>';
         foreach ($tableArray as $row) {
             $result .= '<tr>';
@@ -98,19 +142,7 @@ class FinTables
 
 class Options
 {
-    private static $sql;
-
-    /**
-     * @param $table
-     */
-    public function __construct($table)
-    {
-        self::$sql = mysqli_connect('localhost', DB_USER, DB_PASSWORD, DB_NAME);
-        self::$sql->set_charset("utf8");
-        if (self::$sql === false) {
-            die("Ошибка: " . mysqli_connect_error());
-        }
-    }
+    private $sql;
 
     /**
      * @param $name
@@ -119,11 +151,8 @@ class Options
     public function getOptions($name)
     {
         $optQuery = 'SELECT * FROM options WHERE NAME="'.$name.'"';
-        if($optRes = self::$sql->query($optQuery)){
-            while($row = $optRes->fetch_assoc()){
-                $result[] = $row;
-            }
-        }
+        $sql = new DB();
+        $result = $sql->query($optQuery);
         return $result;
 
     }
@@ -190,7 +219,7 @@ class FinForms
                         <td>Категория</td>
                         <td><select id="finAddCategory">';
         foreach ($options as $o) {
-            echo '<option value="'.$o['VALUE'].'">'.$o['DESCRIPTION'].'</option>';
+            $result .= '<option value="'.$o['VALUE'].'">'.$o['DESCRIPTION'].'</option>';
         }
         $result .= '</select></td>
                     </tr>';
@@ -239,7 +268,7 @@ class UI
      * @param $buttons
      * @return string
      */
-    public function showModal($id, $content, $buttons) {
+    public function showModal($id, $content, $title, $buttons) {
         foreach ($buttons as $btnk => $btnv) {
             $btnContent .= '<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" id="'.$btnk.'">'.$btnv.'</button>
 ';
@@ -251,6 +280,7 @@ class UI
                                     <button type="button" class="close" data-dismiss="modal">×</button>
                                 </div>
                                 <div class="modal-body">
+                                <h2>'.$title.'</h2>
                                     '.$content.'
                                 </div>
                                 <div class="modal-footer">

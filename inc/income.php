@@ -17,14 +17,14 @@ $incomeArr = $income->showTable([]);
 ?>
 
 <h2>Add</h2>
-<button type="button" class="btn btn-info waves-effect" data-toggle="modal" data-target="#incomeAdd">Modal Default</button>
+<button type="button" class="btn btn-info waves-effect" data-toggle="modal" data-target="#incomeAdd"><i class="icon gg-add"></i> Добавить</button>
+<?php
+$form = \Helper\FinForms::showAddForm('income');
+$modal = \Helper\UI::showModal('incomeAdd', $form, 'Добавить доход', ['incomeAddButton' => 'Добавить']);
+echo $modal;
+?>
 <h2>Update</h2>
 <h2>Delete?</h2>
 <h2>Options</h2>
-
-<?php
-    $form = \Helper\FinForms::showAddForm('income');
-    \Helper\UI::showModal('incomeAdd', $form, ['incomeAddButton' => 'Добавить'])
-?>
 
 <script type="text/javascript" src="js/income.js"></script>
