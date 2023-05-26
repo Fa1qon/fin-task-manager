@@ -1,10 +1,6 @@
 <?php
 namespace Helper;
 
-define('DB_NAME', 'u0748065_taskmgr');
-define('DB_USER', 'u0748065_taskmgr');
-define('DB_PASSWORD', 'tY4nY1vR5icX4d');
-
 /* TODO
  * Методы добавления, изменения удаления
  * Верстка таблиц
@@ -13,8 +9,32 @@ define('DB_PASSWORD', 'tY4nY1vR5icX4d');
  *
  *
 */
+class Auth
+{
+      public static function checkAuth($login, $password)
+      {
+          $sessionHash = md5(rand(10000, 99999));
+          $passwordHash = md5($password);
+          $sql = new DB();
+          $checkAuth = DB::select('users', 'LOGIN="'.$login.'" AND PASSWORD_HASH="'.$passwordHash.'"');
+          while ($row = $checkAuth->fetch_assoc()) {
+              $arr = $row;
+          }
 
-Class DB {
+          if ($arr['ID'] > 0) {
+              $authQuery = 'UPDATE users SET SESSION_TOKEN="'.$sessionHash.'" WHERE ID='.$arr['ID'];
+              $auth = $sql->query($authQuery);
+              return $sessionHash;
+          } else {
+              return 'WRONG';
+          }
+      }
+}
+Class DB
+{
+    const DB_NAME = 'u0748065_taskmgr';
+    const DB_USER = 'u0748065_taskmgr';
+    const DB_PASSWORD = 'tY4nY1vR5icX4d';
     private static $sql;
 
     /**
@@ -22,7 +42,7 @@ Class DB {
      */
     public function __construct()
     {
-        self::$sql = mysqli_connect('localhost', DB_USER, DB_PASSWORD, DB_NAME);
+        self::$sql = mysqli_connect('localhost', self::DB_USER, self::DB_PASSWORD, self::DB_NAME);
         self::$sql->set_charset("utf8");
         if (self::$sql === false) {
             die("Ошибка: " . mysqli_connect_error());
@@ -33,13 +53,9 @@ Class DB {
      * @param $str
      * @return array
      */
-    public function query($str)
+    public static function query($str)
     {
-        if($res = self::$sql->query($str)){
-            while($row = $res->fetch_assoc()){
-                $result[] = $row;
-            }
-        }
+        $result = self::$sql->query($str);
         return $result;
     }
 
@@ -58,13 +74,13 @@ Class DB {
      * @param $filter
      * @return array
      */
-    public function select($table, $filter = '')
+    public static function select($table, $filter = '')
     {
         if ($filter != '') {
             $where = ' WHERE '.$filter;
         }
         $query = 'SELECT * FROM '.$table.$where;
-        $result = $this->query($query);
+        $result = self::query($query);
         return $result;
     }
 
@@ -83,7 +99,7 @@ class FinTables
      * @param array $arParams
      * @return array
      */
-    public function getTableArray(array $arParams)
+    public static function getTableArray(array $arParams)
     {
         if (empty($arParams)) {
             $strParams = '';
@@ -110,7 +126,7 @@ class FinTables
      * @param $params
      * @return string
      */
-    public function showTable($params)
+    public static function showTable($params)
     {
         $tableArray = self::getTableArray($params);
         $result = '<table class="table table-bordered table-hover ">';
@@ -148,7 +164,7 @@ class Options
      * @param $name
      * @return array
      */
-    public function getOptions($name)
+    public static function getOptions($name)
     {
         $optQuery = 'SELECT * FROM options WHERE NAME="'.$name.'"';
         $sql = new DB();
@@ -194,7 +210,7 @@ class FinForms
      * @param $type
      * @return string
      */
-    public function showAddForm($type)
+    public static function showAddForm($type)
     {
         switch ($type) {
             case 'income':
@@ -263,12 +279,16 @@ class FinForms
 class UI
 {
     /**
-     * @param $id
-     * @param $content
-     * @param $buttons
+     * Показывает модальное окно
+     * @author Fa1qon
+     * @param $id ID окна для обработки резкльтатов JS
+     * @param $content Контент модального окна
+     * @param $title Заголовок
+     * @param $buttons Кнопки
      * @return string
      */
-    public function showModal($id, $content, $title, $buttons) {
+    public static function showModal($id, $content, $title, $buttons) {
+        $btnContent = '';
         foreach ($buttons as $btnk => $btnv) {
             $btnContent .= '<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" id="'.$btnk.'">'.$btnv.'</button>
 ';
@@ -293,3 +313,7 @@ class UI
     }
 
 }
+
+// TODO ДОбавить список кейсов с категориями, тегами и визуальным редактором с подсветкой синтаксиса кода или отступов или Pre в рамочке
+// Лучше с бб-кодами и экранированием для нормального хранения в бд
+

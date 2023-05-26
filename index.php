@@ -1,14 +1,19 @@
 <?php
-$page = $_GET['p'];
-include 'lib/db.php';
 include 'lib/helper.php';
 
-if (!$_COOKIE['AUTH']) {
+if (!isset($_COOKIE['AUTH'])) {
     include 'inc/auth.php';
 } else {
-    //$passwordHash = $_COOKIE['AUTH'];
     include 'inc/header.php';
-
+    if (isset($_GET['p'])) {
+        if ($_GET['p'] == 'home') {
+            $page = 'index';
+        } else {
+            $page = $_GET['p'];
+        }
+    } else {
+        $page = 'index';
+    }
     if($page && $page != '') {
         include 'inc/'.$page.'.php';
     } else {

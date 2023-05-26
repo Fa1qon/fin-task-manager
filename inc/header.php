@@ -1,14 +1,4 @@
 <?php
-$checkAuthQuery = 'SELECT * FROM users WHERE SESSION_TOKEN="'.$_COOKIE['AUTH'].'"';
-$checkAuth = $sql->query($checkAuthQuery);
-if($checkAuth = $sql->query($checkAuthQuery)){
-    while($row = $checkAuth->fetch_assoc()){
-        $arr = $row;
-    }
-}
-if(!$_GET['p']){
-    $_GET['p'] = 'home';
-}
 $arMenu = array(
     [
         'p' => 'home',
@@ -86,6 +76,39 @@ $arMenu = array(
                     'settings' => 'НАстройки',
                 ]
         ],
+        [
+            'p' => 'calendar',
+            'n' => 'Календарь',
+            'l' => [
+                'judgement' => 'Суды',
+                'birthdays' => 'Дни рождения',
+                'projects' => 'Мероприятия',
+                'stat' => 'Расписание',
+                'plans' => 'Настройки',
+            ]
+        ],
+        [
+            'p' => 'lib',
+            'n' => 'Библиотека',
+            'l' => [
+                'cases' => 'Кейсы',
+                'books' => 'Книги',
+                'notes' => 'Заметки',
+                'links' => 'Ссылки',
+            ]
+        ],
+        [
+            'p' => 'sport',
+            'n' => 'Спорт',
+            'l' => [
+                'activity' => 'Упражнения',
+                'steps' => 'Шаги',
+                'weight' => 'Вес',
+                'graph' => 'Графики',
+                'settings' => 'Настройки',
+            ]
+        ],
+
 );
 ?>
 <!doctype html>
@@ -146,10 +169,11 @@ $arMenu = array(
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- modernizr JS
+    <!-- css.gg icons
 		============================================ -->
     <link rel="stylesheet" href="css/icons.css">
-
+    <!-- modernizr JS
+            ============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -476,7 +500,7 @@ $arMenu = array(
                 <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                     <?
                         foreach ($arMenu as $mi) {
-                            if ($mi['p'] == $_GET['p']) {$cls = 'class="active"';} else {$cls = '';}
+                            if (isset($_GET['p']) && $mi['p'] == $_GET['p']) {$cls = 'class="active"';} else {$cls = '';}
                             echo '<li '.$cls.'><a data-toggle="tab" href="#'.$mi['p'].'"><i class="notika-icon notika-house"></i> '.$mi['n'].'</a></li>';
                         }
                     ?>
@@ -484,7 +508,7 @@ $arMenu = array(
                 <div class="tab-content custom-menu-content">
                     <?
                     foreach ($arMenu as $mi) {
-                        if ($mi['p'] == $_GET['p']) {$cls = 'active';} else {$cls = '';}
+                        if (isset($_GET['p']) && $mi['p'] == $_GET['p']) {$cls = 'active';} else {$cls = '';}
                         echo '<div id="'.$mi['p'].'" class="tab-pane '.$cls.' in notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">';
                         foreach ($mi['l'] as $milK => $milV) {
@@ -499,34 +523,3 @@ $arMenu = array(
     </div>
 </div>
 <!-- Main Menu area End-->
-<!-- Main Menu area End-->
-<!--
-<header class="menu">
-    <div class="menu-wrap">
-        <span style="color:white;">Вы вошли как <?=$arr['LOGIN']?> (<?=$arr['FULL_NAME']?>)</span>
-        <input type="checkbox" id="checkbox">
-        <nav>
-            <ul>
-                <li><a href="?p=outlay">Расходы</a></li>
-                <li><a href="?p=income">Доходы</a></li>
-                <li><a href="?p=tasks">Задачи</a></li>
-                <li><a href="#">Статистика</a></li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropbtn">Dropdown
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <label for="checkbox">
-            <i class="fa fa-bars menu-icon"></i>
-        </label>
-    </div>
-</header>-->
