@@ -1,0 +1,14 @@
+{
+  "name": "vendor_name/manager",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Fa1qon",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  }
+}

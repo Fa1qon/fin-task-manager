@@ -92,9 +92,6 @@ $arMenu = array(
             'n' => 'Библиотека',
             'l' => [
                 'cases' => 'Кейсы',
-                'books' => 'Книги',
-                'notes' => 'Заметки',
-                'links' => 'Ссылки',
             ]
         ],
         [
@@ -175,6 +172,8 @@ $arMenu = array(
     <!-- modernizr JS
             ============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <script src="https://cdn.tiny.cloud/1/h69gvpnuqadgt8g9gd0uohoqhnj2absm8w2skae5ad1q2er9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <body>

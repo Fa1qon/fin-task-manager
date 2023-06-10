@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f33142b4-31f2-41e3-9377-b206872eca89" name="REG RU" url="https://dashboard.fa1qon.ru/">
+        <fileTransfer rootFolder="/var/www/u0748065/data/www/dashboard.fa1qon.ru/" accessType="SFTP" host="31.31.198.58" port="22" sshConfigId="6b456579-0c33-49c6-8895-352224000291" sshConfig="REG RU HOSTING">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
