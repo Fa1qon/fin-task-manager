@@ -17,12 +17,12 @@ class Auth
           $passwordHash = md5($password);
           $sql = new DB();
           $checkAuth = DB::select('users', 'LOGIN="'.$login.'" AND PASSWORD_HASH="'.$passwordHash.'"');
-          while ($row = $checkAuth->fetch_assoc()) {
-              $arr = $row;
-          }
+          /*while ($row = $checkAuth->fetch_assoc()) {
+              $arr[] = $row;
+          }*/
 
-          if ($arr['ID'] > 0) {
-              $authQuery = 'UPDATE users SET SESSION_TOKEN="'.$sessionHash.'" WHERE ID='.$arr['ID'];
+          if ($checkAuth[0]['ID'] > 0) {
+              $authQuery = 'UPDATE users SET SESSION_TOKEN="'.$sessionHash.'" WHERE ID='.$checkAuth[0]['ID'];
               $auth = $sql->query($authQuery);
               return $sessionHash;
           } else {
@@ -74,16 +74,95 @@ Class DB
      * @param $filter
      * @return array
      */
-    public static function select($table, $filter = '')
+    public static function select($table, $filter = '', $select = '*')
     {
         if ($filter != '') {
             $where = ' WHERE '.$filter;
+        } else {
+            $where = '';
         }
-        $query = 'SELECT * FROM '.$table.$where;
-        $result = self::query($query);
+        $query = 'SELECT '.$select.' FROM '.$table.$where;
+        $res = self::query($query);
+        while ($row = mysqli_fetch_assoc($res)) {
+            $result[] = $row;
+        }
         return $result;
     }
 
+}
+
+class Library
+{
+    /**
+     * Возвращает список категорий библиотеки
+     * @return array
+     */
+    public static function getCategoriesList()
+    {
+        $db = new DB();
+        $list = $db->select('options', 'NAME = "NOTES_CATEGORY"');
+        return $list;
+    }
+
+    public static function getTagsList($category = '')
+    {
+        $db = new DB();
+        if ($category == ''){
+            $cat = 'ALL';
+        } else {
+            $cat = $category;
+        }
+        $noteList = $db->select('notes', 'LIMIT 100', 'TAGS');
+        foreach ($noteList as $row) {
+            $arRowTags = explode($row['TAGS'], ', ');
+            foreach ($arRowTags as $tag) {
+                $arTags[] = $tag;
+            }
+        }
+        array_unique($arTags);
+        return $arTags;
+    }
+
+
+    public static function showAddForm($params)
+    {
+        /*
+         * Форма добавления записи
+         * Категория
+         * Теги
+         * Заголовок
+         * Текст
+         */
+        $category = $params['category'];
+        $result = '<div class="form lib-add-form">';
+        $result .= '<table>';
+        $result .= '<tr>
+                    <td>Категория</td>
+                    <td><select id="libAddCategory">';
+        $categories = self::getCategoriesList();
+        foreach ($categories as $cat) {
+            if (strtolower($cat['VALUE']) == $category) {
+                $result .= '<option selected value="'.strtolower($cat['VALUE']).'">'.$cat['DESCRIPTION'].'</option>';
+            } else {
+                $result .= '<option value="'.strtolower($cat['VALUE']).'">'.$cat['DESCRIPTION'].'</option>';
+            }
+        }
+        $result .= '</select></td></tr>';
+        $result .= '<tr>
+                        <td>Теги</td>
+                        <td><input type="text" id="libAddTags"></td>
+                    </tr>';
+        $result .= '<tr>
+                        <td>Заголовок</td>
+                        <td><input type="text" id="libAddTitle"></td>
+                    </tr>';
+        $result .= '<tr><td>текст</td></tr>
+                        <tr><td colspan="3"><textarea class="libContent" id="libAddContent" cols="30" rows="10"></textarea></td></tr>
+                    </tr>';
+        $result .= '</table>';
+        $result .= '</div>';
+        return $result;
+    }
 }
 
 class FinTables
@@ -221,7 +300,7 @@ class FinForms
                 break;
         }
         $options  = Options::getOptions($opt);
-        $result = '<div class="fin-form fin-add-form">';
+        $result = '<div class="form fin-form fin-add-form">';
         $result .= '<table>';
         $result .= '<tr>
                         <td>Дата</td>
@@ -275,6 +354,7 @@ class FinForms
 
     }
 }
+
 
 class UI
 {
